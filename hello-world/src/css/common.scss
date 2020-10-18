@@ -1,0 +1,878 @@
+// -------------------------------------
+//     多個組件共用的css
+// -------------------------------------
+
+$assetUrl: "../assets/";
+@import "./mixin";
+@import "./param";
+.blocked{
+  &:hover{
+    cursor: not-allowed!important;
+  }
+}
+.hiddenText{
+  color:red;
+  display:none;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+input[type="checkbox"] {
+  display: none;
+  &:checked + .checkbox {
+    &::after {
+      content: "\2714";
+      position: absolute;
+      line-height: 12px;
+      color: #000;
+      top: 50%;
+      left: 50%;
+      transform: translateY(-50%) translateX(-50%);
+    }
+  }
+}
+
+input,
+textarea {
+  @include placeholderStyle() {
+    color: #ccc !important;
+    font-family: "Microsoft JhengHei", "微軟正黑體", arial, helvetica, sans-serif !important;
+  }
+}
+
+.checkbox {
+  display: block;
+  position: relative;
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+  border: 1px solid #999;
+}
+
+// 今日按鈕
+.todayBtn {
+  @include solidButton($width: 46px, $height: 28px);
+  font-size: 14px;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  &.active {
+    cursor: default;
+  }
+  &.active,
+  &:hover {
+    background-color: #e2e8eb;
+    border-color: #aebabf;
+    color: #aebabf;
+  }
+}
+// 前一天按鈕、後一天按鈕
+.preDayBten, .nextDayBten {
+    @include solidButton($width: auto, $height: 28px);
+    font-size: 14px;
+    border-radius: 3px;
+    border: 1px solid transparent;
+    padding: 0 10px;
+  }
+// 日期套件
+.flatPickr {
+  cursor: pointer;
+  background-color: #fff;
+  &.error {
+    border: 1px solid #f15261;
+  }
+}
+// 日期套件壓樣式
+.flatpickr-days {
+  .flatpickr-day {
+    &.today {
+      border-color: transparent;
+      &:hover,
+      &:focus {
+        cursor: pointer;
+        outline: 0;
+        background: #e2e2e2;
+        border-color: #e2e2e2;
+        color: #484848;
+      }
+      &.selected {
+        &:hover,
+        &:focus {
+          background: #1bbc9b;
+          color: #fff;
+          border-color: #1bbc9b;
+        }
+      }
+      &.endRange,
+      &.startRange {
+        background: #1bbc9b;
+        color: #fff;
+        border-color: #1bbc9b;
+      }
+    }
+    &.prevMonthDay,
+    &.nextMonthDay {
+      color: inherit;
+      background: inherit;
+      border: inherit;
+      cursor: inherit;
+      &:hover {
+        cursor: pointer;
+        outline: 0;
+        background: #e2e2e2;
+        border-color: #e2e2e2;
+      }
+      &.inRange {
+        cursor: pointer;
+        outline: 0;
+        background: #e2e2e2;
+        border-color: #e2e2e2;
+      }
+      &.endRange,
+      &.startRange {
+        background: #1bbc9b;
+        color: #fff;
+        border-color: #1bbc9b;
+      }
+    }
+    &.disabled {
+      color: rgba(72, 72, 72, 0.3);
+      background: transparent;
+      border-color: transparent;
+      cursor: default;
+      &:hover {
+        color: rgba(72, 72, 72, 0.3);
+        background: transparent;
+        border-color: transparent;
+        cursor: default;
+      }
+    }
+  }
+}
+
+// 錯誤訊息
+.errorMsg-wrap {
+  display: flex;
+  align-items: center;
+  text-align: start;
+  padding: 0 10px;
+  width: 100%;
+  height: 60px;
+  background-color: rgba(242, 102, 94, 0.9);
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 299;
+  .errorMsg {
+    height: 100%;
+    color: #fff;
+    font-size: 16px;
+    line-height: 60px;
+  }
+}
+
+// 日期選擇器
+.datePicker {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 28px;
+  .todayBtn,.preDayBten {
+    margin-right: 5px;
+  }
+  .nextDayBten {
+      margin-left: 5px;
+  }
+  .flatPickr {
+    width: 150px;
+    height: 100%;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding-left: 10px;
+    // background: url("../assets/sunplusMap/gameSelect.png") right 10px center no-repeat #fff;
+    &.selected,
+    &.active {
+      border-color: #666670;
+      // background-image: url("../assets/sunplusMap/gameSelect_active.png");
+    }
+  }
+}
+
+// 表格過濾
+.filterIcon {
+  width: 14px;
+  height: 14px;
+  margin-left: 5px;
+  // background: url("../assets/common/filter_close.png") center center no-repeat;
+}
+
+//表格
+.table-wrap {
+  overflow-y: hidden;
+  overflow-x: scroll;
+  color: #4d4d4d;
+  flex: 1;
+  margin-bottom: 2px;
+  padding-bottom: 2px;
+  .table {
+    float: left;
+    min-width: 100%;
+    height: 100%;
+  }
+  .tableHead {
+    height: 35px;
+    display: flex;
+    flex-direction: row;
+    color: #eff2f7;
+    background-color: $tableHeadColor;
+    padding-right: 7px;
+    & > div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-right: 1px solid transparent;
+      background-color: $tableHeadColor;
+      padding: 2px 5px;
+      flex-shrink: 0;
+
+    }
+  }
+  .tableBody {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #ddd;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: calc(100% - 35px);
+    .tableContent {
+      width: 100%;
+    }
+    .tableItems {
+      display: flex;
+      flex-direction: row;
+      border-bottom: 1px solid #ddd;
+      background-color: #fff;
+      position: relative;
+      &.background {
+        background-color: #f9f9f9;
+      }
+      & > div {
+        min-height: 70px;
+        border-right: 1px solid #ddd;
+        padding: 2px 5px;
+        flex-shrink: 0;
+      }
+      & > div:last-child {
+        border-right: none;
+      }
+      .overMask {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-color: rgba(0, 0, 0, 0.3);
+        z-index: 1;
+      }
+    }
+  }
+  .emptyTable {
+    float: left;
+    min-width: 100%;
+    .emptyText {
+      font-size: 24px;
+      color: #ccc;
+      margin: 40px 0;
+      text-align: center;
+    }
+  }
+}
+
+// 搜尋列下方
+.searchBottom-wrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  // 換頁
+  .pager {
+    margin: 10px 12px 10px auto;
+  }
+}
+
+.nameSetting {
+  background-color: #f7f7f7;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  padding: 13px 29px 21px;
+  .inputItem {
+    display: flex;
+    margin-bottom: 5px;
+    flex-shrink: 0;
+    .inputItemTitle {
+      display: flex;
+      align-items: center;
+      margin: 0 13px;
+      font-size: 14px;
+    }
+    &.tag {
+      margin-bottom: 15px;
+      .inputItemContent {
+        .selectItemText {
+          width: 50px;
+          height: 30px;
+          line-height: 28px;
+          &.A {
+          }
+          &.L {
+            color: #7c849c;
+          }
+          &.T {
+            color: #90d7d6;
+          }
+          &.P {
+            color: #a097d5;
+          }
+          &.W {
+            color: #ff9087;
+          }
+          &.common {
+            color: #999;
+          }
+        }
+      }
+    }
+    &.game {
+      margin-bottom: 15px;
+      .inputItemContent {
+        flex-grow: 1;
+        width: 0.1px;
+      }
+    }
+    &.hand {
+      margin-left: -6px;
+      margin-bottom: 10px;
+      .inputItemTitle {
+        margin-right: 8px;
+      }
+      input[type="radio"] {
+        display: none;
+      }
+      .radioBox {
+        @include hollowButton($width: 25px, $height: 25px);
+        border-radius: 50%;
+        font-size: 11px;
+        margin-right: 15px;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+    &.showAllLang {
+      width: auto;
+      align-self: flex-end;
+      font-size: 11px;
+      cursor: pointer;
+      color: #0479fb;
+      padding-right: 18px;
+      // background: url($assetUrl+"alert/openLang.png") right center no-repeat;
+      &.open {
+        // background-image: url($assetUrl+"alert/closeLang.png");
+      }
+    }
+    &.lang {
+      .langName {
+        display: flex;
+        align-items: center;
+        &.odd {
+          width: calc(50% - 17px);
+        }
+        &.even {
+          width: calc(50% + 17px);
+        }
+        .inputText {
+          height: 27px;
+          flex: 1;
+          line-height: 25px;
+          position: relative;
+          border: 1px solid #d1d1d2;
+          border-radius: 2px;
+          margin-right: 20px;
+          &:last-child {
+            margin-right: 0;
+          }
+          input {
+            width: 100%;
+            height: 100%;
+            padding: 0 10px;
+            border: 0;
+          }
+          &.require::after {
+            content: "*";
+            font-size: 10px;
+            color: #f15261;
+            position: absolute;
+            right: 5px;
+            top: 0;
+          }
+          &.empty {
+            border-color: #eee;
+          }
+        }
+      }
+    }
+    &.web {
+      flex-wrap: wrap;
+      input {
+        flex: 1;
+        border: 1px solid #d1d1d2;
+        height: 27px;
+        line-height: 25px;
+        padding: 0 10px;
+        border-radius: 2px;
+        &.empty {
+          border-color: #eee;
+        }
+      }
+      .titleLimit {
+        font-size: 10px;
+        color: #36415a;
+        margin-top: 5px;
+        width: 100%;
+        text-align: right;
+      }
+    }
+    &.title {
+      flex-wrap: wrap;
+      input {
+        flex: 1;
+        border: 1px solid #d1d1d2;
+        height: 27px;
+        line-height: 25px;
+        padding: 0 10px;
+        border-radius: 2px;
+        &.empty {
+          border-color: #eee;
+        }
+      }
+      .titleLimit {
+        font-size: 10px;
+        color: #36415a;
+        margin-top: 5px;
+        width: 100%;
+        text-align: right;
+      }
+    }
+    &.note {
+      flex-wrap: wrap;
+      .inputItemTitle {
+        line-height: 24px;
+        align-items: flex-start;
+      }
+      textarea {
+        flex: 1;
+        border: 1px solid #d1d1d2;
+        height: 120px;
+        line-height: 20px;
+        padding: 5px 10px;
+        border-radius: 2px;
+        &.empty {
+          border-color: #eee;
+        }
+      }
+      .noteLimit {
+        font-size: 10px;
+        color: #36415a;
+        margin-top: 5px;
+        width: 100%;
+        text-align: right;
+      }
+    }
+    &.createBtn {
+      justify-content: flex-end;
+      margin: 5px 0 0;
+      .btn {
+        @include solidButton($width: 130px, $height: 40px);
+        border-radius: 2px;
+        font-size: 16px;
+      }
+    }
+    .inputItemContent {
+      display: flex;
+      flex-direction: row;
+      .selectItemText {
+        display: block;
+        width: 100px;
+        height: 30px;
+        text-align: center;
+        line-height: 28px;
+        border: 1px solid #5a5f5f;
+        border-radius: 2px;
+        padding: 0 5px;
+        color: #999;
+        background-color: #f2f2f2;
+        @include overFlowDot();
+        &.tag {
+          width: 70px;
+        }
+      }
+      .commonSport {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-left: 15px;
+        font-size: 12px;
+        color: #999;
+        .checkbox {
+          display: inline-block;
+          width: 15px;
+          height: 15px;
+          margin-right: 10px;
+          border-color: #e6e6e6;
+        }
+        label {
+          cursor: pointer;
+        }
+        .checked {
+          color: #333;
+        }
+        .commonWarn {
+          margin-left: 10px;
+          color: #f15261;
+          cursor: default;
+        }
+      }
+    }
+  }
+  &.readOnly {
+    position: relative;
+    &:after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      z-index: 1;
+    }
+    .inputItem.showAllLang {
+      position: relative;
+      z-index: 2;
+    }
+  }
+}
+.areaListWrap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 4;
+  .areaListMask {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  .areaList {
+    position: relative;
+    float: right;
+    width: 50%;
+    right: 0;
+    min-width: 420px;
+    height: 100%;
+    background-color: #f7f7f7;
+    .areaListHeader {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      height: 35px;
+      background-color: #f2665e;
+      color: $buttonHoverFontColor;
+      .areaListTitle {
+        font-size: 14px;
+        padding-left: 19px;
+      }
+      .areaListCloseBtn {
+        width: 13px;
+        height: 13px;
+        cursor: pointer;
+        margin: 0 10px 0 auto;
+        // background: url("../assets/alert/closeIcon_create.png") center center no-repeat;
+      }
+    }
+    .areaListBody {
+      display: flex;
+      flex-direction: column;
+      height: calc(100% - 35px);
+      .addCountryWrap {
+        padding: 20px 42px 10px 20px;
+        .addCountryBtn {
+          @include hollowButton($width: auto, $height: 28px);
+          border-radius: 3px;
+          min-width: 73px;
+          max-width: 90px;
+          padding: 0 3px;
+          &.active {
+            cursor: default;
+          }
+          .fa {
+            position: relative;
+            top: 1px;
+            margin-left: 3px;
+          }
+        }
+        .addCountry {
+          background-color: #fff;
+          padding: 25px 15px 15px 34px;
+          .nameSetting {
+            background-color: transparent;
+            margin-top: 15px;
+            padding: 0;
+            .inputItem.lang {
+              .langName {
+                width: 49%;
+                flex-direction: column;
+                align-items: flex-start;
+                .inputItemTitle {
+                  margin-bottom: 3px;
+                }
+                &.even {
+                  margin-left: auto;
+                }
+              }
+            }
+          }
+          .inputItem {
+            display: flex;
+            align-items: center;
+            .inputItemTitle {
+              font-size: 11px;
+              color: #35404d;
+              margin-right: 10px;
+            }
+            .inputItemContent {
+              flex: 1;
+              height: 25px;
+              & > * {
+                width: 100%;
+                height: 100%;
+                border-radius: 2px;
+              }
+              .selector {
+                .selectPicker {
+                  font-size: 12px;
+                }
+                .dropDown {
+                  top: 25px;
+                  ul {
+                    li {
+                      font-size: 12px;
+                    }
+                  }
+                }
+              }
+            }
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+          .btnWrap {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: flex-end;
+            margin: 15px 0 0 auto;
+            div {
+              border-radius: 2px;
+              font-size: 10px;
+              margin-right: 5px;
+              &:last-child {
+                margin-right: 0;
+              }
+            }
+            .cancelAdd {
+              min-width: 60px;
+              padding: 0 3px;
+              @include hollowButton($width: auto, $height: 25px);
+            }
+            .submitAdd {
+              @include solidButton($width: 60px, $height: 25px);
+            }
+          }
+        }
+      }
+      .areaWrap {
+        flex: 1;
+        padding: 13px 42px 10px 60px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        .areaItem {
+          margin-bottom: 15px;
+          &:last-child {
+            margin-bottom: 0;
+          }
+          .areaTitle {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            height: 25px;
+            line-height: 25px;
+            border-bottom: 1px solid #7087a3;
+            cursor: pointer;
+            .areaName {
+              font-size: 13px;
+              color: #2a3542;
+              margin: 0 6px 0 10px;
+            }
+            .countryNum {
+              font-size: 12px;
+              color: #7087a3;
+            }
+            .arrowWrap {
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              margin-left: auto;
+              .arrowBtn {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 14px;
+                height: 14px;
+                color: #68aef9;
+                border: 1px solid #68aef9;
+                border-radius: 50%;
+                margin-left: 5px;
+              }
+              .hideText {
+                display: none;
+                color: #0479fb;
+                font-size: 11px;
+              }
+            }
+
+            &.open {
+              .arrowWrap {
+                .hideText {
+                  display: block;
+                }
+              }
+            }
+          }
+          .countryWrap {
+            display: none;
+            padding: 10px 0 10px 20px;
+            .countryItem {
+              height: 23px;
+              line-height: 21px;
+              border: 1px solid #e6e6e6;
+              border-radius: 2px;
+              background-color: #fff;
+              color: #333;
+              font-size: 11px;
+              margin-bottom: 4px;
+              padding: 0 7px;
+              &:last-child {
+                margin-bottom: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.scrollStyle {
+  .table-wrap {
+    .table {
+      .tableHead {
+        padding-right: 7px;
+      }
+    }
+  }
+}
+
+// 捲軸樣式
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+  border-radius: 10px;
+  background-color: transparent;
+}
+/*滚动条两端的箭头*/
+::-webkit-scrollbar-button {
+  display: none;
+}
+/*滚动条内侧部分 去掉*/
+::-webkit-scrollbar-track-piece {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+/*滚动条中可以拖动的那部分*/
+::-webkit-scrollbar-thumb {
+  background-color: #767676;
+  border-radius: 4px;
+}
+/*变角部分*/
+::-webkit-scrollbar-corner {
+  display: none;
+}
+::-webkit-resizer {
+  display: none;
+}
+
+#app .swal2-modal .swal2-styled:focus {
+  box-shadow: none;
+}
+.swal2-container {
+  .swal2-content {
+    .inputTitle {
+      text-align: left;
+    }
+    .swal2-input {
+      margin-top: 0.5em;
+    }
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0;
+}
+
+.emptyPage {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  background-color: #f1f2f7;
+}
+.emptyRect {
+  fill: #e6e6e6;
+}
+
+.blockLoadingMask {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.2);
+  z-index: 10;
+  .sk-fading-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+}

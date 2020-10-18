@@ -1,0 +1,11 @@
+@charset "UTF-8";
+// -------------------------------------
+//     Normalize
+// -------------------------------------
+@import './normalize.scss';
+@import "./mixin";
+// 動畫
+@import "./transition";
+// 共用
+@import "./common";
+

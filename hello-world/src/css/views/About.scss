@@ -1,0 +1,199 @@
+@import '../index';
+.website {
+    height: 100%;
+    .website-data {
+        // padding: 1% 0;
+        margin: 0 auto;
+        width: 85%;
+        min-width: 1200px;
+        box-shadow: 0 3px 3px rgba(0,0,0,.36);
+        box-sizing: border-box;
+        .header-block {
+            color: #fff;
+            background-color: #414349;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            .search-area {
+                margin: 0 auto;
+                width: 98%;
+                padding: 10px 0;
+                .select-type {
+                    float: left;
+                    margin-right: .5%;
+                    .title {
+                        padding: 0 0 3px 5px;
+                        text-align: left;
+                        font-size: 14px;
+                        line-height: 20px;
+                    }
+                    .selector {
+                        display: flex;
+                        flex-direction: row;
+                        min-width: 200px;
+                        width:auto;
+                        height: 28px;
+                        position: relative;
+                        margin-right: 10px;
+                        cursor: pointer;
+                        background-color: #FFF;
+                        &:after {
+                            content: '';
+                            position: absolute;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            right: 10px;
+                            width: 12px;
+                            height: 10px;
+                            z-index: 0;
+                            // background-image: url($assetUrl + 'sunplusMap/gameSelect.png');
+                        }
+                        .input {
+                            width: 100%;
+                            display: flex;
+                            align-items: center;
+                            color: gray;
+                            span {
+                                padding-left: 5px;
+                            }
+                        }
+                        &.open,
+                        &.active {
+                            &::after {
+                                // background-image: url($assetUrl + 'sunplusMap/gameSelect_active.png');
+                            }
+                        }
+                        .dropDown {
+                            position: absolute;
+                            width: 100%;
+                            max-height: 450px;
+                            overflow-y: auto;
+                            font-size: 14px;
+                            top: 28px;
+                            left: 0;
+                            background-color: #FFF;
+                            border: 1px solid #CCC;
+                            z-index: 15;
+                            ul {
+                                li {
+                                    display: block;
+                                    height: 26px;
+                                    line-height: 26px;
+                                    color: #5A5F5F;
+                                    padding-left: 10px;
+                                    padding-right: 7px;
+                                    cursor: pointer;
+                                    @include overFlowDot();
+                                    &:hover {
+                                        color: #F2F2F2;
+                                        background-color: #495D74;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .total {
+                font-size: 14px;
+                text-align: right;
+                padding: 0 28px 10px;
+                span {
+                    color: red;
+                    font-weight: bold;
+                }
+            }
+        }
+        .outer {
+            .wrap {
+                color: #3b3b3b;
+                height: 800px;
+                overflow-y: auto;
+                .table {
+                    position: relative;
+                    .tableHead {
+                        display: flex;
+                        background: linear-gradient(to bottom, #121212 0%,#525050 100%);
+                        color: #ffffff;
+                        font-weight: bold;
+                        position: sticky;
+                        top: 0px;
+                        z-index: 1;
+                        & > .box {
+                            display: flex;
+                            flex: 1;
+                            align-items: center;
+                            padding: 10px 0px;
+                            justify-content: center;
+                        }
+                        & > .env {
+                            flex: 3;
+                        }
+                        & > .sportType {
+                            flex: 3;
+                        }
+                        & > .feature {
+                            flex: 3;
+                        }
+                        & > .dataBase {
+                            flex: 3;
+                        }
+                        & > .sportName {
+                            flex: 5;
+                        }
+                        & > .url {
+                            flex: 15;
+                        }
+                    }
+                    .tableContent {
+                        .data {
+                            .detail {
+                                display: flex;
+                                
+                                & > .box {
+                                    display: flex;
+                                    flex: 1;
+                                    align-items: center;
+                                    border-bottom: 1px solid #eee;
+                                    padding: 10px 0px;
+                                    justify-content: center;
+                                }
+                                & > .env {
+                                    flex: 3;
+                                }
+                                & > .sportType {
+                                    flex: 3;
+                                }
+                                & > .feature {
+                                    flex: 3;
+                                }
+                                & > .dataBase {
+                                    flex: 3;
+                                }
+                                & > .sportName {
+                                    flex: 5;
+                                }
+                                & > .url {
+                                    flex: 15;
+                                    justify-content: start;
+                                    .url-herf {
+                                        cursor: pointer;
+                                        &:hover {
+                                            color: #1155cc;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .none {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            font-size: 16px;
+                            height: 250px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
